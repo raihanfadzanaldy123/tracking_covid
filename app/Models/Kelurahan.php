@@ -7,14 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelurahan extends Model
 {
+    protected $fillable = ['nama_kelurahan', 'id_kecamatan'];
     protected $table = "kelurahans";
 
     public function kecamatan(){
-        return $this->belongsTo('App/Kecamatan','id_kecamatan');
+        return $this->belongsTo('App\Models\Kecamatan', 'id_kecamatan');
     }
 
     public function rw(){
-        return $this->hasMany('App/Rw','id_kelurahan');
+        return $this->hasMany('App\Models\Rw', 'id_kelurahan');
     }
 
     use HasFactory;

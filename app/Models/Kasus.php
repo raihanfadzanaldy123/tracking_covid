@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kasus extends Model
 {
+    protected $fillable = ['id_rw', 'positif', 'sembuh', 'meninggal', 'tanggal'];
     protected $table = "kasuses";
 
     public function rw(){
-        return $this->belongsTo('App/Rw','id_rw');
+        return $this->belongsTo('App\Models\Rw', 'id_rw');
     }
 
     use HasFactory;

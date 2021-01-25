@@ -15,11 +15,11 @@ class CreateKasusesTable extends Migration
     {
         Schema::create('kasuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_rw');
             $table->bigInteger('positif');
             $table->bigInteger('sembuh');
             $table->bigInteger('meninggal');
             $table->date('tanggal');
-            $table->unsignedBigInteger('id_rw');
             $table->foreign('id_rw')->references('id')->on('rws')->onDelete('cascade');
             $table->timestamps();
         });

@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kota extends Model
 {
+    protected $fillable = ['id_provinsi', 'kode_kota','nama_kota'];
     protected $table = "kotas";
+    public $timestamps = true;
 
     public function provinsi(){
-        return $this->belongsTo('App/Provinsi','id_provinsi');
+        return $this->belongsTo('App\Models\Provinsi', 'id_provinsi');
     }
 
     public function kecamatan(){
-        return $this->hasMany('App/Kecamatan','id_kota');
+        return $this->hasMany('App\Models\Kecamatan', 'id_kota');
     }
 
     use HasFactory;
