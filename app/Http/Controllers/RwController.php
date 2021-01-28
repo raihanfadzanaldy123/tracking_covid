@@ -28,8 +28,15 @@ class RwController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'no_rw' => 'required|numeric|unique:rws'
+        ], [
+            'no_rw.required' => 'No Harus Di Isi!',
+            'no_rw.numeric' => 'Harus Input Menggunakan Angka!',
+            'no_rw.unique' => 'No Sudah Terpakai!'
+        ]);
         $rw = new Rw();
-        $rw->nama_rw = $request->nama_rw;
+        $rw->no_rw = $request->no_rw;
         $rw->id_kelurahan = $request->id_kelurahan;
         $rw->save();
         return redirect()->route('rw.index')->with('toast_success', 'RW berhasil dibuat!');
@@ -51,7 +58,7 @@ class RwController extends Controller
     public function update(Request $request, $id)
     {
         $rw = Rw::findOrFail($id);
-        $rw->nama_rw = $request->nama_rw;
+        $rw->no_rw = $request->no_rw;
         $rw->id_kelurahan = $request->id_kelurahan;
         $rw->save();
         return redirect()->route('rw.index')->with('toast_success', 'RW berhasil diedit!');

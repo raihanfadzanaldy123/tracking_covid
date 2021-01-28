@@ -13,13 +13,8 @@
                 <div class="card-body">
                     <form action="{{route('kasusglobal.store')}}" method="post">
                         @csrf
-                        <div class="form-group">
-                            <label for="">Negara</label>
-                            <select class="form-control" name="id_negara" id="">
-                                @foreach($negara as $data)
-                                    <option value="{{$data->id}}">{{$data->nama_negara}}</option>
-                                @endforeach
-                            </select>
+                        <div class="mb-5">
+                            @livewire('select')
                         </div>
                         <div class="form-group">
                             <label for="">Positif</label>
@@ -38,7 +33,7 @@
                             <input type="date" name="tanggal" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="far fa-save btn btn-outline-primary"> Simpan</button>
+                            <button type="submit" class="far fa-save btn btn-outline-primary float-right"> Simpan</button>
                         </div>
                     </form>
                 </div>

@@ -13,10 +13,6 @@
                 <div class="card-body">
                     @csrf
                     <div class="form-group">
-                        <label for="">Kode Kecamatan</label>
-                        <input type="text" name="kode_kecamatan" value="{{$kecamatan->kode_kecamatan}}" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
                         <label for="">Kecamatan</label>
                         <input type="text" name="nama_kecamatan" value="{{$kecamatan->nama_kecamatan}}" class="form-control" readonly>
                     </div>

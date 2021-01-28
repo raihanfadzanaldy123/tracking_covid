@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NegaraController;
+use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\KotaController;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\KelurahanController;
+use App\Http\Controllers\RwController;
+use App\Http\Controllers\KasusController;
+use App\Http\Controllers\KasusglobalController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,33 +30,23 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
-
 
 Route::get('hei', function () {
     return view('halo');
 });
 
-use App\Http\Controllers\NegaraController;
-Route::resource('admin/negara', NegaraController::class);
+Route::group(['prefix'=> 'admin', 'middleware'=> ['auth']], function ()
+{
+    Route::get('/', function () {
+        return view('layouts.master');
+    });
+    Route::resource('provinsi', ProvinsiController::class);
+    Route::resource('kota', KotaController::class);
+    Route::resource('kecamatan', KecamatanController::class);
+    Route::resource('kelurahan', KelurahanController::class);
+    Route::resource('rw', RwController::class);
+    Route::resource('kasus', KasusController::class);
+    Route::resource('negara', NegaraController::class);
+    Route::resource('kasusglobal', KasusglobalController::class);
 
-use App\Http\Controllers\ProvinsiController;
-Route::resource('admin/provinsi', ProvinsiController::class);
-
-use App\Http\Controllers\KotaController;
-Route::resource('admin/kota', KotaController::class);
-
-use App\Http\Controllers\KecamatanController;
-Route::resource('admin/kecamatan', KecamatanController::class);
-
-use App\Http\Controllers\KelurahanController;
-Route::resource('admin/kelurahan', KelurahanController::class);
-
-use App\Http\Controllers\RwController;
-Route::resource('admin/rw', RwController::class);
-
-use App\Http\Controllers\KasusController;
-Route::resource('admin/kasus', KasusController::class);
-
-use App\Http\Controllers\KasusglobalController;
-Route::resource('admin/kasusglobal', KasusglobalController::class);
+});

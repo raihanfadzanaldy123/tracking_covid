@@ -15,7 +15,10 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Kelurahan / Desa</label>
-                            <input type="text" name="nama_kelurahan" class="form-control" required>
+                            <input type="text" name="nama_kelurahan" class="form-control @error('nama_kelurahan') is-invalid @enderror">
+                            @error('nama_kecamatan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Kecamatan</label>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('judul')
- Kecamatan
+ Kasus
 @endsection
 @section('content')
 <div class="container">
@@ -13,8 +13,8 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    Data Kecamatan
-                    <a href="{{route('kecamatan.create')}}" class="fas fa-plus-square btn btn-outline-dark float-right">
+                    Data Kasus
+                    <a href="{{route('kasus2.create')}}" class="fas fa-plus-square btn btn-outline-dark float-right">
                         Tambah Data
                     </a>
                 </div>
@@ -24,24 +24,30 @@
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kabupaten / Kota</th>
+                                    <th>Rw</th>
+                                    <th>Positif</th>
+                                    <th>Sembuh</th>
+                                    <th>Meninggal</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no=1; @endphp
-                                @foreach($kecamatan as $data)
+                                @foreach($kasus2 as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$data->nama_kecamatan}}</td>
-                                    <td>{{$data->kota->nama_kota}}</td>
+                                    <td>{{$data->rw->nama_rw}}</td>
+                                    <td>{{$data->positif}}</td>
+                                    <td>{{$data->sembuh}}</td>
+                                    <td>{{$data->meninggal}}</td>
+                                    <td>{{date('d-m-Y', strtotime($data->tanggal))}}</td>
                                     <td>
-                                        <form action="{{route('kecamatan.destroy',$data->id)}}" method="post">
+                                        <form action="{{route('kasus.destroy',$data->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('kecamatan.show',$data->id)}}" class="fas fa-file-alt btn btn-outline-primary"> Lihat</a> |
-                                            <a href="{{route('kecamatan.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"> Edit</a> |
+                                            <!-- <a href="{{route('kasus.show',$data->id)}}" class="fas fa-file-alt btn btn-outline-primary"> Lihat</a> | -->
+                                            <a href="{{route('kasus.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"> Edit</a> |
                                             <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"> Hapus</button>
                                         </form>
                                     </td>
@@ -56,3 +62,5 @@
     </div>
 </div>
 @endsection
+
+

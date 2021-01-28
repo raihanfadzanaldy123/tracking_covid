@@ -16,7 +16,7 @@ class KasusController extends Controller
 
     public function index()
     {
-        $kasus = Kasus::with('rw')->get();
+        $kasus = Kasus::with('rw.kelurahan.kecamatan.kota.provinsi')->get();
         return view('kasus.index',compact('kasus'));
     }
 

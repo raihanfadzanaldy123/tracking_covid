@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <a href="{{url()->previous()}}" class="fas fa-arrow-alt-circle-left btn btn-outline-secondary"> Kembali</a>
-                            <button type="submit" class="far fa-save btn btn-outline-primary"> Simpan</button>
+                            <button type="submit" class="far fa-save btn btn-outline-primary float-right"> Simpan</button>
                         </div>
                     </form>
                 </div>

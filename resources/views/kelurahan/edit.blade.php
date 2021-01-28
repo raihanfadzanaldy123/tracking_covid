@@ -17,7 +17,10 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="">Kelurahan / Desa</label>
-                            <input type="text" name="nama_kelurahan" value="{{$kelurahan->nama_kelurahan}}" class="form-control" required>
+                            <input type="text" name="nama_kelurahan" value="{{$kelurahan->nama_kelurahan}}" class="form-control @error('nama_kelurahan') is-invalid @enderror">
+                            @error('nama_kelurahan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Kecamatan</label>

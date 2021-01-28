@@ -20,7 +20,7 @@ Provinsi
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-bordered table-hover" id="coba">
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
@@ -56,3 +56,4 @@ Provinsi
     </div>
 </div>
 @endsection
+

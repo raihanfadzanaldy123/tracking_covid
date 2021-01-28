@@ -16,11 +16,17 @@ Provinsi
                         @csrf
                         <div class="form-group">
                             <label for="">Kode Provinsi</label>
-                            <input type="text" name="kode_provinsi" value="{{$provinsi->kode_provinsi}}" class="form-control" required>
+                            <input type="text" name="kode_provinsi" value="{{$provinsi->kode_provinsi}}" class="form-control @error('kode_provinsi') is-invalid @enderror">
+                            @error('kode_provinsi')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Provinsi</label>
-                            <input type="text" name="nama_provinsi" value="{{$provinsi->nama_provinsi}}" class="form-control" required>
+                            <input type="text" name="nama_provinsi" value="{{$provinsi->nama_provinsi}}" class="form-control @error('mama_provinsi') is-invalid @enderror">
+                            @error('nama_provinsi')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <a href="{{url()->previous()}}" class="fas fa-arrow-alt-circle-left btn btn-outline-secondary"> Kembali</a>

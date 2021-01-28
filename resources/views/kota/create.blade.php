@@ -15,11 +15,17 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Kode Kabupaten / Kota</label>
-                            <input type="text" name="kode_kota" class="form-control" required>
+                            <input type="text" name="kode_kota" class="form-control @error('kode_kota') is-invalid @enderror">
+                            @error('kode_kota')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Kabupaten / Kota</label>
-                            <input type="text" name="nama_kota" class="form-control" required>
+                            <input type="text" name="nama_kota" class="form-control @error('nama_kota') is-invalid @enderror">
+                            @error('nama_kota')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Provinsi</label>

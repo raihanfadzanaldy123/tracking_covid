@@ -16,7 +16,7 @@ class KelurahanController extends Controller
 
     public function index()
     {
-        $kelurahan = kelurahan::with('kecamatan')->get();
+        $kelurahan = Kelurahan::with('kecamatan')->get();
         return view('kelurahan.index',compact('kelurahan'));
     }
 
@@ -28,7 +28,13 @@ class KelurahanController extends Controller
 
     public function store(Request $request)
     {
-        $kelurahan = new kelurahan();
+        $request->validate([
+            'nama_kelurahan' => 'required|unique:kelurahans'
+        ], [
+            'nama_kelurahan.required' => 'Nama Kelurahan Harus Di Isi!',
+            'nama_kelurahan.unique' => 'Nama Kelurahan Sudah Terpakai!'
+        ]);
+        $kelurahan = new Kelurahan();
         $kelurahan->nama_kelurahan = $request->nama_kelurahan;
         $kelurahan->id_kecamatan = $request->id_kecamatan;
         $kelurahan->save();
@@ -37,20 +43,20 @@ class KelurahanController extends Controller
 
     public function show($id)
     {
-        $kelurahan = kelurahan::findOrFail($id);
+        $kelurahan = Kelurahan::findOrFail($id);
         return view('kelurahan.show',compact('kelurahan'));
     }
 
     public function edit($id)
     {
-        $kelurahan = kelurahan::findOrFail($id);
+        $kelurahan = Kelurahan::findOrFail($id);
         $kecamatan = Kecamatan::all();
         return view('kelurahan.edit',compact('kelurahan','kecamatan'));
     }
 
     public function update(Request $request, $id)
     {
-        $kelurahan = kelurahan::findOrFail($id);
+        $kelurahan = Kelurahan::findOrFail($id);
         $kelurahan->nama_kelurahan = $request->nama_kelurahan;
         $kelurahan->id_kecamatan = $request->id_kecamatan;
         $kelurahan->save();
@@ -59,7 +65,7 @@ class KelurahanController extends Controller
 
     public function destroy($id)
     {
-        $kelurahan = kelurahan::findOrFail($id)->delete();
+        $kelurahan = Kelurahan::findOrFail($id)->delete();
         return redirect()->route('kelurahan.index')->with('success', 'Kelurahan/Desa berhasil dihapus!');
     }
 }

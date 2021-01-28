@@ -15,7 +15,7 @@ class Kelurahan extends Model
     }
 
     public function rw(){
-        return $this->hasMany('App\Models\Rw', 'id_kelurahan');
+        return $this->hasMany(Rw::class, 'id_kelurahan');
     }
 
     use HasFactory;

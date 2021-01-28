@@ -14,12 +14,11 @@
                     <form action="{{route('kecamatan.store')}}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="">Kode Kecamatan</label>
-                            <input type="text" name="kode_kecamatan" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label for="">Kecamatan</label>
-                            <input type="text" name="nama_kecamatan" class="form-control" required>
+                            <input type="text" name="nama_kecamatan" class="form-control @error('nama_kecamatan') is-invalid @enderror">
+                            @error('nama_kecamatan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Kabupaten / Kota</label>

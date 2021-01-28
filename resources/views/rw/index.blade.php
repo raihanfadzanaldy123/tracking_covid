@@ -34,7 +34,7 @@
                                 @foreach($rw as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>{{$data->nama_rw}}</td>
+                                    <td>{{$data->no_rw}}</td>
                                     <td>{{$data->kelurahan->nama_kelurahan}}</td>
                                     <td>
                                         <form action="{{route('rw.destroy',$data->id)}}" method="post">

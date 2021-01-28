@@ -26,8 +26,4 @@ class HomeController extends Controller
         return view('layouts.master');
     }
 
-    public function admin()
-    {
-        return view('layouts.master');
-    }
 }

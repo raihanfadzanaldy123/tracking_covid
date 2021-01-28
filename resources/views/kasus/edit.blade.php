@@ -15,19 +15,8 @@
                      <!-- <input type="hidden" name="_method" value="PUT"> -->
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Rw</label>
-                            <select class="form-control" name="id_rw" id="exampleFormControlSelect1">
-                                @foreach($rw as $data)
-                                    <option value="{{$data->id}}"
-                                    @if($data->nama_rw == $kasus->rw->nama_rw)
-                                        selected
-                                    @endif
-                                    >
-                                    {{$data->nama_rw}}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <div class="mb-5">
+                            @livewire('select',['selectedRw' => $kasus->id_rw])
                         </div>
                         <div class="form-group">
                             <label for="">Positif</label>
@@ -47,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <a href="{{url()->previous()}}" class="fas fa-arrow-alt-circle-left btn btn-outline-secondary"> Kembali</a>
-                            <button type="submit" class="far fa-save btn btn-outline-primary"> Simpan</button>
+                            <button type="submit" class="far fa-save btn btn-outline-primary float-right"> Simpan</button>
                         </div>
                     </form>
                 </div>

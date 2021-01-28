@@ -14,7 +14,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="">Rw</label>
-                        <input type="text" name="nama_rw" value="{{$rw->nama_rw}}" class="form-control" readonly>
+                        <input type="text" name="no_rw" value="{{$rw->no_rw}}" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label for="">Kelurahan</label>
