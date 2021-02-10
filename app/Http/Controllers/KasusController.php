@@ -28,6 +28,19 @@ class KasusController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'positif' => 'required',
+            'sembuh' => 'required',
+            'meninggal' => 'required',
+            'tanggal' => 'required',
+            'id_rw' => 'required'
+        ], [
+            'positif.required' => 'Jumlah Positif Harus Di Isi!',
+            'sembuh.required' => 'Jumlah Sembuh Harus Di Isi!',
+            'meninggal.required' => 'Jumlah Meninggal Harus Di Isi!',
+            'tanggal.required' => 'Tangaal Harus Di Isi!',
+            'id_rw.required' => 'ID RW Harus Di Isi!'
+        ]);
         $kasus = new Kasus();
         $kasus->positif = $request->positif;
         $kasus->sembuh = $request->sembuh;
@@ -53,6 +66,19 @@ class KasusController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'positif' => 'required',
+            'sembuh' => 'required',
+            'meninggal' => 'required',
+            'tanggal' => 'required',
+            'id_rw' => 'required'
+        ], [
+            'positif.required' => 'Jumlah Positif Harus Di Isi!',
+            'sembuh.required' => 'Jumlah Sembuh Harus Di Isi!',
+            'meninggal.required' => 'Jumlah Meninggal Harus Di Isi!',
+            'tanggal.required' => 'Tangaal Harus Di Isi!',
+            'id_rw.required' => 'ID RW Harus Di Isi!'
+        ]);
         $kasus = Kasus::findOrFail($id);
         $kasus->positif = $request->positif;
         $kasus->sembuh = $request->sembuh;

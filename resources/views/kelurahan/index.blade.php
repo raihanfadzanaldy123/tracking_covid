@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="datatable">
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
@@ -40,9 +40,8 @@
                                         <form action="{{route('kelurahan.destroy',$data->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('kelurahan.show',$data->id)}}" class="fas fa-file-alt btn btn-outline-primary"> Lihat</a> |
-                                            <a href="{{route('kelurahan.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"> Edit</a> |
-                                            <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"> Hapus</button>
+                                            <a href="{{route('kelurahan.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"></a> |
+                                            <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"></button>
                                         </form>
                                     </td>
                                 </tr>

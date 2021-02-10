@@ -9,6 +9,8 @@ use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\RwController;
 use App\Http\Controllers\KasusController;
 use App\Http\Controllers\KasusglobalController;
+use App\Http\Controllers\ReportController;
+
 
 
 /*
@@ -22,9 +24,7 @@ use App\Http\Controllers\KasusglobalController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', ReportController::class);
 
 Auth::routes();
 
@@ -46,6 +46,7 @@ Route::group(['prefix'=> 'admin', 'middleware'=> ['auth']], function ()
     Route::resource('kelurahan', KelurahanController::class);
     Route::resource('rw', RwController::class);
     Route::resource('kasus', KasusController::class);
+    Route::resource('report', ReportController::class);
     Route::resource('negara', NegaraController::class);
     Route::resource('kasusglobal', KasusglobalController::class);
 

@@ -33,13 +33,13 @@ class Select extends Component
         $this->rw = collect();
         $this->selectedRw = $selectedRw;
 
-        if (!is_null($selectedRw)) {
-            $rw = Rw::with('kelurahan.kecamatan.kota.provinsi')->find($selectedRw);
-            if ($rw) {
-                $this->rw = RW::where('id_kelurahan', $rw->id_kelurahan)->get();
-                $this->kelurahan = Kelurahan::where('id_kecamatan', $rw->kelurahan->id_kecamatan)->get();
-                $this->kecamatan = Kecamatan::where('id_kota', $rw->kelurahan->kecamatan->id_kota)->get();
-                $this->kota = Kota::where('id_provinsi', $rw->kelurahan->kecamatan->kota->id_provinsi)->get();
+        if (!is_null($selectedRw)) { //jika rw di isi
+            $rw = Rw::with('kelurahan.kecamatan.kota.provinsi')->find($selectedRw);//mencari data rw di DB
+            if ($rw) { 
+                $this->rw = Rw::where('id_kelurahan', $rw->id_kelurahan)->get();//mengambil data kelurahan melalui id_rw 
+                $this->kelurahan = Kelurahan::where('id_kecamatan', $rw->kelurahan->id_kecamatan)->get();//mengambil data kecamtan melalui id_kelurahan
+                $this->kecamatan = Kecamatan::where('id_kota', $rw->kelurahan->kecamatan->id_kota)->get();//mengambil data kota melalui id_kecamatan
+                $this->kota = Kota::where('id_provinsi', $rw->kelurahan->kecamatan->kota->id_provinsi)->get();//mengambil data provinsi melalui id_kota
                 $this->selectedProvinsi =$rw->kelurahan->kecamatan->kota->id_provinsi;
                 $this->selectedKota = $rw->kelurahan->kecamatan->id_kota;
                 $this->selectedKecamatan = $rw->kelurahan->id_kecamatan;
@@ -78,7 +78,7 @@ class Select extends Component
     public function updatedSelectedKelurahan($kelurahan)
     {
         if (!is_null($kelurahan)) {
-            $this->rw = RW::where('id_kelurahan', $kelurahan)->get();
+            $this->rw = Rw::where('id_kelurahan', $kelurahan)->get();
         }else{
             $this->selectedRw = NULL;
         }

@@ -15,14 +15,14 @@ Provinsi
                         @csrf
                         <div class="form-group">
                             <label for="">Kode Provinsi</label>
-                            <input type="text" name="kode_provinsi" class="form-control @error('kode_provinsi') is-invalid @enderror">
+                            <input type="text" name="kode_provinsi" class="form-control @error('kode_provinsi') is-invalid @enderror" value="{{old('kode_provinsi')}}">
                             @error('kode_provinsi')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="">Provinsi</label>
-                            <input type="text" name="nama_provinsi" class="form-control @error('nama_provinsi') is-invalid @enderror">
+                            <input type="text" name="nama_provinsi" class="form-control @error('nama_provinsi') is-invalid @enderror" value="{{old('nama_provinsi')}}">
                             @error('nama_provinsi')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

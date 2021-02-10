@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kota extends Model
 {
-    protected $fillable = ['id_provinsi', 'kode_kota','nama_kota'];
-    protected $table = "kotas";
-    public $timestamps = true;
-
     public function provinsi(){
         return $this->belongsTo('App\Models\Provinsi', 'id_provinsi');
     }

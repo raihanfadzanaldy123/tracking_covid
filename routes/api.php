@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('coba', [ApiController::class,'index']);
+Route::get('indonesia', [ApiController::class,'indonesia']);
+Route::get('global', [ApiController::class,'global']);
+Route::get('indonesia/provinsi', [ApiController::class,'sumProvinsi']);
+Route::get('indonesia/kota', [ApiController::class,'sumKota']);
+Route::get('indonesia/kecamatan', [ApiController::class,'sumKecamatan']);
+Route::get('indonesia/kelurahan', [ApiController::class,'sumKelurahan']);
+Route::get('indonesia/provinsi/{id}', [ApiController::class,'getProvinsi']);

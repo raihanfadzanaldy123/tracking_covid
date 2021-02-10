@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             @if (session('message'))
                 <div class="alert alert-success" role="alert">
                     {{ session('message') }}
@@ -14,16 +14,14 @@
             <div class="card">
                 <div class="card-header">
                     Data Kasus
-                    <a href="{{route('kasus.create')}}" class="fas fa-plus-square btn btn-outline-dark float-right">
-                        Tambah Data
-                    </a>
+                    <a href="{{route('kasus.create')}}" class="fas fa-plus-square btn btn-dark float-right"></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped table-bordered" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>Nomor</th>
+                                    <th>No</th>
                                     <th>Lokasi</th>
                                     <th>Rw</th>
                                     <th>Positif</th>
@@ -38,7 +36,10 @@
                                 @foreach($kasus as $data)
                                 <tr>
                                     <td>{{$no++}}</td>
-                                    <td>Provinsi : {{$data->rw->kelurahan->kecamatan->kota->provinsi->nama_provinsi}}<br>Kota : {{$data->rw->kelurahan->kecamatan->kota->nama_kota}}<br>Kecamatan : {{$data->rw->kelurahan->kecamatan->nama_kecamatan}}<br>Kelurahan : {{$data->rw->kelurahan->nama_kelurahan}}</td>
+                                    <td>Provinsi : {{$data->rw->kelurahan->kecamatan->kota->provinsi->nama_provinsi}}<br>
+                                    Kota : {{$data->rw->kelurahan->kecamatan->kota->nama_kota}}<br>
+                                    Kecamatan : {{$data->rw->kelurahan->kecamatan->nama_kecamatan}}<br>
+                                    Kelurahan : {{$data->rw->kelurahan->nama_kelurahan}}</td>
                                     <td>{{$data->rw->no_rw}}</td>
                                     <td>{{$data->positif}}</td>
                                     <td>{{$data->sembuh}}</td>
@@ -49,8 +50,8 @@
                                             @csrf
                                             @method('DELETE')
                                             <!-- <a href="{{route('kasus.show',$data->id)}}" class="fas fa-file-alt btn btn-outline-primary"> Lihat</a> | -->
-                                            <a href="{{route('kasus.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"> Edit</a> |
-                                            <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"> Hapus</button>
+                                            <a href="{{route('kasus.edit',$data->id)}}" class="fas fa-edit btn btn-success"></a> |
+                                            <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"></button>
                                         </form>
                                     </td>
                                 </tr>

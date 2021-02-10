@@ -49,7 +49,7 @@
           //
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-flag"></i>
               <p>
                 Kasus Lokal
                 <i class="fas fa-angle-left right"></i>
@@ -100,7 +100,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-globe"></i>
               <p>
                 Kasus Global
                 <i class="fas fa-angle-left right"></i>

@@ -29,16 +29,15 @@ class KotaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_kota' => 'required|numeric|max:4|unique:kotas',
-            'nama_kota' => 'required|alpha|unique:kotas',
+            'kode_kota' => 'required|unique:kotas',
+            'nama_kota' => 'required|unique:kotas',
+            'id_provinsi' => 'required'
         ], [
-            'kode_kota.required' => 'Kode Harus Di Isi!',
-            'kode_kota.numeric' => 'Harus Input Menggunakan Angka!',
-            'kode_kota.max' => 'Kode Maximal 4',
-            'kode_kota.unique' => 'Kode Sudah Terpakai!',
-            'nama_kota.required' => 'Nama Kota Harus Di Isi!',
-            'nama_kota.alpha' => 'Harus Input Menggunakan Huruf!',
-            'nama_kota.unique' => 'Nama Kota Sudah Terpakai!'
+            'kode_kota.required' => 'Kode kota Harus Di Isi!',
+            'kode_kota.unique' => 'Kode kota Sudah Terpakai!',
+            'nama_kota.required' => 'Nama kota Harus Di Isi!',
+            'nama_kota.unique' => 'Nama kota Sudah Terpakai!',
+            'id_provinsi.required' => 'ID Provinsi Harus Di Isi!'
         ]);
         $kota = new Kota();
         $kota->kode_kota = $request->kode_kota;
@@ -64,16 +63,13 @@ class KotaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kode_kota' => 'required|numeric|max:4|unique:kotas',
-            'nama_kota' => 'required|alpha|unique:kotas',
+            'kode_kota' => 'required',
+            'nama_kota' => 'required',
+            'id_provinsi' => 'required'
         ], [
-            'kode_kota.required' => 'Kode Harus Di Isi!',
-            'kode_kota.numeric' => 'Harus Input Menggunakan Angka!',
-            'kode_kota.max' => 'Kode Maximal 4',
-            'kode_kota.unique' => 'Kode Sudah Terpakai!',
-            'nama_kota.required' => 'Nama Kota Harus Di Isi!',
-            'nama_kota.alpha' => 'Harus Input Menggunakan Huruf!',
-            'nama_kota.unique' => 'Nama Kota Sudah Terpakai!'
+            'kode_kota.required' => 'Kode kota Harus Di Isi!',
+            'nama_kota.required' => 'Nama kota Harus Di Isi!',
+            'id_provinsi.required' => 'ID Provinsi Harus Di Isi!'
         ]);
         $kota = Kota::findOrFail($id);
         $kota->kode_kota = $request->kode_kota;

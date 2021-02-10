@@ -14,13 +14,11 @@ Provinsi
             <div class="card">
                 <div class="card-header">
                     Data Provinsi
-                    <a href="{{route('provinsi.create')}}" class="fas fa-plus-square btn btn-outline-dark float-right">
-                        Tambah Data
-                    </a>
+                    <a href="{{route('provinsi.create')}}" class="fas fa-plus-square btn btn-outline-dark float-right"></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover" id="coba">
+                        <table class="table" id="datatable">
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
@@ -40,9 +38,8 @@ Provinsi
                                         <form action="{{route('provinsi.destroy',$data->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('provinsi.show',$data->id)}}" class="fas fa-file-alt btn btn-outline-primary"> Lihat</a> |
-                                            <a href="{{route('provinsi.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"> Edit</a> |
-                                            <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"> Hapus</button>
+                                            <a href="{{route('provinsi.edit',$data->id)}}" class="fas fa-edit btn btn-outline-success"></a> |
+                                            <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="fas fa-trash-alt btn btn-outline-danger"></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -29,11 +29,11 @@ class RwController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_rw' => 'required|numeric|unique:rws'
+            'no_rw' => 'required',
+            'id_kelurahan' => 'required'
         ], [
+            'id_kelurahan.required' => 'No Harus Di Isi!',
             'no_rw.required' => 'No Harus Di Isi!',
-            'no_rw.numeric' => 'Harus Input Menggunakan Angka!',
-            'no_rw.unique' => 'No Sudah Terpakai!'
         ]);
         $rw = new Rw();
         $rw->no_rw = $request->no_rw;
@@ -57,6 +57,13 @@ class RwController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'no_rw' => 'required',
+            'id_kelurahan' => 'required'
+        ], [
+            'id_kelurahan.required' => 'No Harus Di Isi!',
+            'no_rw.required' => 'No Harus Di Isi!',
+        ]);
         $rw = Rw::findOrFail($id);
         $rw->no_rw = $request->no_rw;
         $rw->id_kelurahan = $request->id_kelurahan;

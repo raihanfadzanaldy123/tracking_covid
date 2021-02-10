@@ -16,7 +16,7 @@ Provinsi
                         @csrf
                         <div class="form-group">
                             <label for="">Kode Provinsi</label>
-                            <input type="text" name="kode_provinsi" value="{{$provinsi->kode_provinsi}}" class="form-control @error('kode_provinsi') is-invalid @enderror">
+                            <input type="text" name="kode_provinsi" value="{{$provinsi->kode_provinsi}}" class="form-control @error('kode_provinsi') is-invalid @enderror" >
                             @error('kode_provinsi')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

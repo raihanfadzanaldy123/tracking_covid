@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="datatable">
                             <thead>
                                 <tr>
                                     <th>Nomor</th>
@@ -43,7 +43,6 @@
                                         <form action="{{route('kota.destroy',$data->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{route('kota.show',$data->id)}}" class="btn btn-outline-primary">Lihat</a> |
                                             <a href="{{route('kota.edit',$data->id)}}" class="btn btn-outline-success">Edit</a> |
                                             <button type="submit" onclick="return confirm('Aapakah Anda Yakin?')" class="btn btn-outline-danger">Hapus</button>
                                         </form>

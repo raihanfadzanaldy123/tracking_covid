@@ -29,10 +29,11 @@ class KecamatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kecamatan' => 'required|alpha|unique:kecamatans'
+            'nama_kecamatan' => 'required||unique:kecamatans',
+            'id_kota' => 'required'
         ], [
+            'id_kota.required' => 'Id Kota Harus Di Isi!',
             'nama_kecamatan.required' => 'Nama kecamatan Harus Di Isi!',
-            'nama_kecamatan.alpha' => 'Harus Input Menggunakan Huruf!',
             'nama_kecamatan.unique' => 'Nama kecamatan Sudah Terpakai!'
         ]);
         $kecamatan = new Kecamatan();
@@ -58,10 +59,11 @@ class KecamatanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_kecamatan' => 'required|alpha|unique:kecamatans'
+            'nama_kecamatan' => 'required||unique:kecamatans',
+            'id_kota' => 'required',
         ], [
+            'id_kota.required' => 'Id Kota Harus Di Isi!',
             'nama_kecamatan.required' => 'Nama kecamatan Harus Di Isi!',
-            'nama_kecamatan.alpha' => 'Harus Input Menggunakan Huruf!',
             'nama_kecamatan.unique' => 'Nama kecamatan Sudah Terpakai!'
         ]);
         $kecamatan = Kecamatan::findOrFail($id);

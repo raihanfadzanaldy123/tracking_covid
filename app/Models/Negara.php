@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Negara extends Model
 {
-    protected $fillable = ['kode_negara','nama_negara'];
-    protected $table = "negaras";
-
     public function kasus2(){
         return $this->hasMany('App\Models\Kasusglobal', 'id_negara');
     }

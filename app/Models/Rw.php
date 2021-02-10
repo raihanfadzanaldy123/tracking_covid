@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rw extends Model
 {
-    protected $fillable = ['no_rw', 'id_kelurahan'];
-    protected $table = "rws";
-
     public function kelurahan(){
         return $this->belongsTo('App\Models\Kelurahan', 'id_kelurahan');
     }

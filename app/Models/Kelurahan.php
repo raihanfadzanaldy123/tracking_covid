@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelurahan extends Model
 {
-    protected $fillable = ['nama_kelurahan', 'id_kecamatan'];
-    protected $table = "kelurahans";
-
+    protected $fillable = ['id_kecamatan', 'nama_kelurahan'];
     public function kecamatan(){
         return $this->belongsTo('App\Models\Kecamatan', 'id_kecamatan');
     }
