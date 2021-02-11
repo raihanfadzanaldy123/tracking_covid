@@ -4,65 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Kasus;
 use DB;
 
 class ReportController extends Controller
 {
-    public function global()
-    {
-        $positif = DB::table('rws')
-                ->select('kasuses.positif',
-                'kasuses.sembuh', 'kasuses.meninggal')
-                ->join('kasuses','rws.id','=','kasuses.id_rw')
-                ->sum('kasuses.positif'); 
-        $sembuh = DB::table('rws')
-                ->select('kasuses.positif',
-                'kasuses.sembuh','kasuses.meninggal')
-                ->join('kasuses','rws.id','=','kasuses.id_rw')
-                ->sum('kasuses.sembuh');
-        $meninggal = DB::table('rws')
-                ->select('kasuses.positif',
-                'kasuses.sembuh','kasuses.meninggal')
-                ->join('kasuses','rws.id','=','kasuses.id_rw')
-                ->sum('kasuses.meninggal');
-
-        return view('report.index',compact('positif', 'sembuh', 'meninggal'));
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 
     public function index(){
+        $positif = DB::table('kasuses')
+                ->select('positif')
+                ->join('rws', 'rws.id', '=', 'kasuses.id_rw')
+                ->sum('positif');
+        $sembuh = DB::table('kasuses')
+                ->select('sembuh')
+                ->join('rws', 'rws.id', '=', 'kasuses.id_rw')
+                ->sum('sembuh');
+        $meninggal = DB::table('kasuses')
+                ->select('meninggal')
+                ->join('rws', 'rws.id', '=', 'kasuses.id_rw')
+                ->sum('meninggal');
+        $provinsi = DB::table('kasuses')
+                ->select('kode_provinsi','nama_provinsi',
+                        DB::raw('SUM(kasuses.positif) as positif'),
+                        DB::raw('SUM(kasuses.sembuh) as sembuh'),
+                        DB::raw('SUM(kasuses.meninggal) as meninggal'))
+    			->join('rws', 'rws.id', '=', 'kasuses.id_rw')
+    			->join('kelurahans', 'kelurahans.id', '=', 'rws.id_kelurahan')
+    			->join('kecamatans', 'kecamatans.id', '=', 'kelurahans.id_kecamatan')
+    			->join('kotas', 'kotas.id', '=', 'kecamatans.id_kota')
+    			->join('provinsis', 'provinsis.id', '=', 'kotas.id_provinsi')
+    			->groupBy('nama_provinsi','kode_provinsi')
+                ->get();
         $url = Http::get('https://api.kawalcorona.com/')->json();
         $url1 = Http::get('https://api.kawalcorona.com/indonesia')->json();
         $url2 = Http::get('https://api.kawalcorona.com/indonesia/provinsi')->json();
-        return view('welcome', compact('url', 'url1', 'url2'));
+        return view('welcome', compact('url', 'url1', 'url2', 'positif', 'sembuh', 'meninggal', 'provinsi'));
     }
 }
